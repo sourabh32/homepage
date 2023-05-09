@@ -1,5 +1,6 @@
 const input = document.getElementById("input");
-input.style.color ="green";
+let time = document.getElementById("time");
+const btn = document.getElementById("start");
 console.log("hello")
 input.addEventListener("change", (event) => {
     console.log(event.target.value)
@@ -17,3 +18,22 @@ const search = (q) =>{
 const clearInput = () =>{
     input.value =""
 }
+
+let timeSec= 0;
+btn.addEventListener("click", () => {
+   intervalId = setInterval(() => {
+  
+        if (timeSec === 1500 ){
+        const sound = new Audio("assets/alarm.wav");
+        sound.play();
+        timeSec = 0;
+        time.innerHTML = "00";
+        clearInterval(intervalId);
+      
+      }
+
+      timeSec++;
+      time.innerHTML = timeSec;
+      
+    }, 1000);
+  });
